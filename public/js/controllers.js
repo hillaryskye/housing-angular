@@ -133,11 +133,11 @@ app.controller("ShowCtrl", ["$scope", "$routeParams", "$http", "$route", "$locat
   $scope.editHouse = function(house) {
     console.log('House', house)
     console.log('id', $routeParams.id)
-    // var house = {
-    //   houseType:  $scope.house.houseType,
-    //   own: $scope.house.own
-    // };
-    //
+    var house = {
+      houseType:  $scope.oneHouse.houseType,
+      own: $scope.oneHouse.own
+    };
+
     $http.put('http://localhost:8080/api/housing/' +  $routeParams.id, house)
       .then(function(response) {
         console.log(response)
