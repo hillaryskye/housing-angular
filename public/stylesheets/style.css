@@ -1,0 +1,7 @@
+.left {
+  float: left;
+}
+.left:after {
+  clear: both;
+  visibility: hidden;
+}

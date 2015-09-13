@@ -1,0 +1,77 @@
+<h1>from home page</h1>
+<!-- <p class="mean">A MEAN stack CRUD database, using MongoDB, Express, Angular, and Node. Routes: INDEX, NEW, SHOW, EDIT, UPDATE, DESTROY. The Angular routes connect to corresponding Express routes.</p>
+
+<img class="audrey" ng-src="http://blog.syracuse.com/shelflife/2008/09/anna.jpg" alt="Audrey Hepburn in 'War and Peace' (1955)" />
+
+<h2>INDEX, DESTROY</h2>
+
+ -->
+<!--  <a href="/new"><button>Add a new house</button></a>
+-->
+<button ng-click="addForm(house)">Add Housing</button>
+ <form class="comment-form fadein fadeout" ng-show="add === true">
+   <label for="houseType">House Type</label>
+     <input type="text" name="houseType" id="houseType" ng-model="house.houseType" placeholder="Enter House Type" required>
+   <label for="own">Own or Rent?</label>
+     <input type="text" name="own" id="own" ng-model="house.own" placeholder="Enter Own or Rent" required>
+    <button class="button" type="submit" ng-click="addHouse(house)">Submit</button>
+ </form>
+
+
+<div ng-repeat="house in housing">
+      <!-- <a ng-href="{{'api/swords/' + sword._id}}">{{sword.swordName}}</a></span> -->
+      <a ng-href="/#/{{house._id}}">{{house.houseType}}</a> <!--SHOW-->
+    {{house.own}}<br>
+
+       <button ng-click="editForm(house)" >Edit House</button>
+      <button ng-click="deleteHouse(house)">Delete House</button>
+
+      <form ng-submit="editHouse(house)" class="comment-form fadein fadeout" ng-show="edit === true" name="editHouseForm">
+       <label for="houseType">House Type</label>
+         <input type="text" id="houseType" name="houseType" ng-model="house.houseType">
+       <label for="own">Own or Rent?</label>
+         <input type="text" id="own" name="own" ng-model="house.own">
+       <input type="submit"></input>
+       </form>
+    <button class="left" ng-click="AddCommentsForm(house)">Add Comments</button>
+
+<!--    <span ng-click="showComments = !showComments">
+ -->
+ <ng-pluralize count="house.comments.length"
+    when="{'0': '',
+           'one': '1 comment',
+           'other': '{} comments',
+           'NaN': ''}">
+    </ng-pluralize><br>
+  </span>
+
+  <form ng-submit="newComment(house)" class="comment-form fadein fadeout" ng-show="comments === true" >
+    <label for="commentText"></label>
+      <input type="text" name="commentText" ng-model="house.newComment.commentText" placeholder="Enter Comment">
+    <label for="commentAuthor"></label>
+      <input type="text" name="commentAuthor" ng-model="house.newComment.commentAuthor" placeholder="Enter Author">
+    <input type="submit" value="Submit Comment"></input>
+  </form>
+
+   <div ng-repeat="comment in house.comments" class=comment>
+    <table>
+      <tr>
+        <td width=50>
+          &nbsp;
+        </td>
+        <td width=400 class=commentBox>
+          <span class='commentText'>Comment: {{comment.commentText}}</span> <span class='commentAuthor'>Author: {{comment.commentAuthor}}</span>
+        </td>
+        <td width=10>
+          &nbsp;
+        </td>
+        <td>
+          <form ng-submit="deleteComment(house, comment)">
+            <input type="submit" value="Delete Comment"></input>
+          </form>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+  </div>
